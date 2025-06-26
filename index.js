@@ -1,11 +1,15 @@
 const express = require('express');
 const sequelize = require('./config/database');
-const CursoRoutes = require('./scr/routes/CursoRoutes')
+const CursoRoutes = require('./scr/routes/CursoRoutes');
+const UsuarioRoutes = require('./scr/routes/UsuarioRoutes');
+const AuthRoutes = require('./scr/routes/AuthRoutes');
 
 const app = express();
 app.use(express.json());
 
 app.use('/cursos', CursoRoutes);
+app.use('/usuarios', UsuarioRoutes);
+app.use('/autenticacao', AuthRoutes);
 
 sequelize.sync().then(() => {
     console.log("Bando de dados sincronizado com sucesso!");
