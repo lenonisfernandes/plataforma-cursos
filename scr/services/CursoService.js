@@ -1,4 +1,4 @@
-const Curso = require('../models/Cursos');
+const Curso = require('../models/Curso');
 
 const CursoService = {
     async listarCursos() {
