@@ -10,7 +10,7 @@ const InscricaoController = {
             res.status(200).json({ mensagem: 'Inscricao realizada com sucesso.' });
 
         } catch (error) {
-            res.status(500).json({ mensagem: error.message });
+            res.status(400).json({ mensagem: error.message });
         }
     },
 
@@ -23,7 +23,7 @@ const InscricaoController = {
             res.status(200).json({ mensagem: 'Incrição cancelada com sucesso.'})
             
         } catch (error) {
-            res.status(500).json({ mensagem: error.message });
+            res.status(400).json({ mensagem: error.message });
             
         }
     }
