@@ -4,16 +4,23 @@ const sequelize = require('./config/database');
 const CursoRoutes = require('./scr/routes/CursoRoutes');
 const UsuarioRoutes = require('./scr/routes/UsuarioRoutes');
 const AuthRoutes = require('./scr/routes/AuthRoutes');
-const authMiddleware = require('./scr/middlewares/AuthMiddleware');
-const CursoController = require('./scr/controllers/CursoController');
-const router = express.Router();
+const RootRoutes = require('./scr/routes/RootRoutes');
+const cookieParser = require('cookie-parser')
+const cors = require('cors');
 
 const app = express();
-app.use(express.json());
+app.use(cors({
+    origin: 'http://localhost:3001',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));app.use(express.json());
+app.use(cookieParser())
 
 app.use('/cursos', CursoRoutes);
 app.use('/usuarios', UsuarioRoutes);
 app.use('/login', AuthRoutes);
+app.use('/', RootRoutes);
 
 sequelize.sync().then(() => {
     console.log("Bando de dados sincronizado com sucesso!");

@@ -21,6 +21,6 @@ Usuario.hasMany(Inscricao, { foreignKey: 'usuario_id' });
 Inscricao.belongsTo(Usuario, { foreignKey: 'usuario_id' });
 
 Curso.hasMany(Inscricao, { foreignKey: 'curso_id' });
-Inscricao.belongsTo(Inscricao, { foreignKey: 'curso_id' });
+Inscricao.belongsTo(Curso, { foreignKey: 'curso_id' });
 
 module.exports = Inscricao;

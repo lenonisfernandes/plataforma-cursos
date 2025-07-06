@@ -1,6 +1,7 @@
 const InscricaoService = require('../services/InscricaoService');
 
 const InscricaoController = {
+
     async inscrever(req, res) {
         try {
             const usuarioId = req.user.id;
@@ -10,7 +11,7 @@ const InscricaoController = {
             res.status(200).json({ mensagem: 'Inscricao realizada com sucesso.' });
 
         } catch (error) {
-            res.status(400).json({ mensagem: error.message });
+            return res.status(error.status || 400).json({ mensagem: error.message });
         }
     },
 
@@ -21,10 +22,8 @@ const InscricaoController = {
         try {
             await InscricaoService.cancelar(usuarioId, cursoId);
             res.status(200).json({ mensagem: 'Incrição cancelada com sucesso.'})
-            
         } catch (error) {
-            res.status(400).json({ mensagem: error.message });
-            
+            return res.status(error.status || 400).json({ mensagem: error.message });
         }
     }
 }

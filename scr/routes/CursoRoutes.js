@@ -9,6 +9,5 @@ router.use(authMiddleware)
 router.get('/', CursoController.listarCursos);
 router.post('/:idCurso', InscricaoController.inscrever);
 router.patch('/:idCurso', InscricaoController.cancelar);
-router.get('/inscritos/:idUsuario', CursoController.listarCursosInscritos);
 
 module.exports = router;

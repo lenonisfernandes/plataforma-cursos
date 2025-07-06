@@ -45,7 +45,7 @@ const CursoService = {
 
     },
     async listarCursosInscritos(usuarioId) {
-        const cursos = await Cursos.findAll({
+        const cursos = await Curso.findAll({
             include:[{
                 model: Inscricao,
                 where: {
@@ -56,10 +56,10 @@ const CursoService = {
             attributes: {
                 include: [
                     [
-                        sequelize.literal('(SELECT COUNT(*) FROM incricoes WHERE inscricoes.curso_id = Curso.id)'), 'total_inscricoes'
+                        sequelize.literal('(SELECT COUNT(*) FROM inscricoes WHERE inscricoes.curso_id = Curso.id)'), 'total_inscricoes'
                     ],
                     [
-                        sequelize.literal('(inscricoes.data_cancelamento is NOT NULL)'), 'inscricao_cancelada'
+                        sequelize.literal('(inscricaos.data_cancelamento is NOT NULL)'), 'inscricao_cancelada'
                     ]
                 ]
             }
