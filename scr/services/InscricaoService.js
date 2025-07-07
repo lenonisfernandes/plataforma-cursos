@@ -64,13 +64,15 @@ const InscricaoService = {
                 WHERE id = :id
                 `,
                 {
-                    replacements: { id: result.id},
+                    replacements: { id: inscricaoResult.id},
                     type: sequelize.QueryTypes.UPDATE
                 }
             );
 
-            return {...result, data_cancelament: new Date()};    
+            return {...inscricaoResult, data_cancelamento: new Date()};    
         } catch (error) {
+                console.log('Erro no cancelamento:', error);
+
             if(error.status) {
                 throw error;
             }

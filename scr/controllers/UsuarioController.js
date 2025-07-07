@@ -27,6 +27,8 @@ const UsuarioController = {
 
             res.cookie('token', token, {
                 httpOnly: true,
+                sameSite: 'lax',
+
             });
 
             res.status(200).json(token);

@@ -23,7 +23,9 @@ const InscricaoController = {
             await InscricaoService.cancelar(usuarioId, cursoId);
             res.status(200).json({ mensagem: 'Incrição cancelada com sucesso.'})
         } catch (error) {
-            return res.status(error.status || 400).json({ mensagem: error.message });
+                console.log('Erro no cancelamento:', error);
+
+            return res.status(error.status || 400).json({ mensagem: error.messagem });
         }
     }
 }

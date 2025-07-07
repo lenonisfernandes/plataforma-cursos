@@ -17,7 +17,10 @@ const CursoController = {
             const usuarioLogado = req.user.id;
             const usuarioSolicitadoId = req.params.idUsuario;
             
-            if(usuarioLogado != usuarioSolicitadoId) {
+            console.log('usuarioLogado:', usuarioLogado, typeof usuarioLogado);
+            console.log('usuarioSolicitadoId:', usuarioSolicitadoId, typeof usuarioSolicitadoId);
+
+            if(String(usuarioLogado) != String(usuarioSolicitadoId)) {
                 return res.status(403).json( { mensagem: 'Você não pode acessar cursos de outros usuários.'});
             }
 
