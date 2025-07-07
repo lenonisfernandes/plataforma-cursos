@@ -13,14 +13,18 @@ const UsuarioService = {
         throw new Error('Email já cadastrado.');
     }
 
-    const senhaHash = await bcrypt.hash(senha, 10);
     const nascimentoDate = moment(nascimento, 'DD/MM/YYYY', true);
+    if(!nascimentoDate.isValid()) {
+      throw new Error('Data inválida. O formato da data deve ser DD/MM/YYYY');
+    }
 
+    const senhaHash = await bcrypt.hash(senha, 10);
+    
     const usuario = await Usuario.create({
         nome, 
         email,
         senha: senhaHash,
-        nascimento: nascimentoDate.toDate()
+        nascimento: nascimentoDate.format('YYYY-MM-DD')
     });
 
     const returnUsuario = {
